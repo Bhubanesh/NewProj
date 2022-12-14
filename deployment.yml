@@ -28,8 +28,7 @@ metadata:
     labels:
       app: sampleapp
 spec:
-  type: LoadBalancer
-  ports:
+    ports:
   - port: 80
     protocol: TCP
     targetPort: 8080

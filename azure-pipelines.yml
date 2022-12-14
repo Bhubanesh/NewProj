@@ -46,15 +46,15 @@ stages:
     - task: DownloadPipelineArtifact@2
       inputs:
         buildType: 'current'
-        artifactName: 'Drop'
-        targetPath: '$(Pipeline.Workspace)/Drop'
+        artifactName: 'drop'
+        targetPath: '$(Pipeline.Workspace)/drop'
     
     - task: KubernetesManifest@0
       inputs:
         action: 'deploy'
         kubernetesServiceConnection: 'AKSConnection'
         nameSpace: 'default'  
-        manifests: $(Pipleline.Workspace)/Drop/deployment.yml            
+        manifests: $(Pipeline.Workspace)/drop/deployment.yml           
 
 
 

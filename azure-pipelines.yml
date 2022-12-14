@@ -47,7 +47,7 @@ stages:
       inputs:
         buildType: 'current'
         artifactName: 'Drop'
-        targetPath: '$(Pipeline.Workspace)/drop'
+        targetPath: '$(Pipeline.Workspace)/Drop'
     
     - task: KubernetesManifest@0
       inputs:

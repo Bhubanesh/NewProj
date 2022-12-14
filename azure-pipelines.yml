@@ -31,7 +31,32 @@ stages:
       inputs: 
         targetPath: '$(Pipeline.Workspace)/s'
         artifact: 'Drop'
-        publishLocation: 'pipeline'            
+        publishLocation: 'pipeline' 
+
+- stage: Deploy
+  displayName: Deploy to AKS
+  dependsOn: build
+  jobs:
+  - job: Deploy
+    displayName: Deploy to AKS
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        artifactName: 'Drop'
+        targetPath: '$(Pipeline.Workspace)/drop'
+    
+    - task: KubernetesManifest@0
+      inputs:
+        action: 'deploy'
+        kubernetesServiceConnection: 'AKSConnection'
+        nameSpace: 'default'  
+        manifests: $(Pipleline.Workspace)/Drop/deployment.yml            
+
+
 
 
 

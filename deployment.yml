@@ -17,7 +17,7 @@ spec:
       spec:
         containers:
         - name: sampleapp
-          image: image
+          image: docker pull newacr95.azurecr.io/mypython:latest
           ports:
           - containerPort: 8080
 ---
